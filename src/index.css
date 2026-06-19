@@ -1,0 +1,442 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --color-brand-red: #cc1a2f;
+  --color-brand-navy: #11135e;
+  --color-brand-blue: #11135e;
+  --color-brand-black: #000000;
+  --color-light-gray: #f8fafc;
+  --color-border-gray: #e5e7eb;
+  --color-text-gray: #64748b;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    background-color: #ffffff;
+    color: #111827;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom linear border animation or stripe quality design */
+.stripe-border {
+  position: relative;
+}
+.stripe-border::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #cc1a2f 0%, #11135e 50%, #000000 100%);
+}
+
+/* Glassmorphism custom components */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.glass-panel-dark {
+  background: rgba(17, 19, 94, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ==========================================
+   PREMIUM MOTION & HOVER COMPONENT SYSTEM
+   ========================================== */
+
+/* 1. BUTTON INTERACTIONS */
+button,
+.btn,
+a.bg-brand-red,
+a.bg-brand-navy,
+button.bg-brand-red,
+a.bg-white\/10,
+button.bg-black {
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+              color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  will-change: transform, box-shadow;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  button:hover,
+  .btn:hover,
+  a.bg-brand-red:hover,
+  a.bg-brand-navy:hover,
+  button.bg-brand-red:hover,
+  a.bg-white\/10:hover,
+  button.bg-black:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 10px 20px -5px rgba(204, 26, 47, 0.12), 0 4px 10px -3px rgba(0, 0, 0, 0.06);
+  }
+}
+
+button:active,
+.btn:active,
+a.bg-brand-red:active,
+a.bg-brand-navy:active,
+button.bg-brand-red:active,
+a.bg-white\/10:active,
+button.bg-black:active {
+  transform: scale(0.98) translateY(0px) !important;
+  transition-duration: 80ms !important;
+}
+
+/* 2. CARDS LIFTING SYSTEM */
+div.bg-white.rounded-xl,
+div.bg-white.rounded-2xl,
+div.bg-white.rounded-3xl,
+div.shadow-sm.rounded-xl,
+div.shadow-sm.rounded-2xl,
+div.shadow-sm.rounded-3xl,
+.pricing-card,
+.blog-card,
+.feature-card {
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  will-change: transform, box-shadow;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  div.bg-white.rounded-xl:hover,
+  div.bg-white.rounded-2xl:hover,
+  div.bg-white.rounded-3xl:hover,
+  .pricing-card:hover,
+  .blog-card:hover,
+  .feature-card:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+    border-color: rgba(204, 26, 47, 0.18) !important;
+    background-color: #fafbfc !important;
+  }
+  
+  /* Animated border glow for active KPIs or premium containers */
+  .kpi-live-glowing:hover {
+    box-shadow: 0 0 0 1px rgba(204, 26, 47, 0.4), 0 10px 25px -5px rgba(204, 26, 47, 0.15) !important;
+  }
+}
+
+/* 3. SIDEBAR NAVIGATION CONTROLS */
+aside button,
+aside a,
+.sidebar-link {
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  position: relative;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  aside button:hover,
+  aside a:hover {
+    background-color: rgba(255, 255, 255, 0.04) !important;
+    color: #ffffff !important;
+    padding-left: 20px !important;
+  }
+  
+  aside button:hover svg,
+  aside a:hover svg {
+    transform: translateX(2px) scale(1.05);
+    color: #cc1a2f !important;
+  }
+}
+
+/* 4. NAVIGATION MENUS & UNDERLINES */
+nav a,
+nav button {
+  transition: all 240ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  nav a:hover,
+  nav button:hover {
+    letter-spacing: 0.01em;
+    transform: translateY(-0.5px);
+  }
+}
+
+/* 5. TABLES INTERACTS */
+tbody tr {
+  transition: background-color 200ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+tbody tr:hover {
+  background-color: rgba(204, 26, 47, 0.02) !important;
+}
+
+/* 6. COMPREHENSIVE FORM STYLES & ANIMATIONS */
+input,
+textarea,
+select {
+  transition: border-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 200ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  input:hover,
+  textarea:hover,
+  select:hover {
+    border-color: rgba(204, 26, 47, 0.35) !important;
+    box-shadow: 0 0 0 2px rgba(204, 26, 47, 0.04) !important;
+  }
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #cc1a2f !important;
+  box-shadow: 0 0 0 3px rgba(204, 26, 47, 0.15) !important;
+  outline: none !important;
+}
+
+/* Validation animations */
+@keyframes shakeError {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-4px); }
+  40%, 80% { transform: translateX(4px); }
+}
+
+@keyframes softPulseSuccess {
+  0%, 100% { box-shadow: 0 0 0 0px rgba(34, 197, 94, 0.2); }
+  50% { box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.4); }
+}
+
+.input-error {
+  border-color: #ef4444 !important;
+  animation: shakeError 300ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.input-success {
+  border-color: #22c55e !important;
+  animation: softPulseSuccess 1s ease-in-out infinite !important;
+}
+
+/* 7. HIGH RES IMAGE HOVERS */
+img:not(.logo):not(.splash-logo):not(.brand-logo) {
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+@media (hover: hover) and (pointer: fine) {
+  img:not(.logo):not(.splash-logo):not(.brand-logo):hover {
+    transform: scale(1.03) !important;
+  }
+}
+
+/* 8. BRAND LOGO FLOAT ENGINE */
+@keyframes logoFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.logo-hover-animation,
+img[src*="logo.svg"],
+.brand-logo,
+img.logo {
+  transition: filter 300ms cubic-bezier(0.4, 0, 0.2, 1), transform 300ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .logo-hover-animation:hover,
+  img[src*="logo.svg"]:hover,
+  .brand-logo:hover,
+  img.logo:hover {
+    animation: logoFloat 2.5s ease-in-out infinite !important;
+    filter: drop-shadow(0 0 10px rgba(204, 26, 47, 0.35)) !important;
+  }
+}
+
+/* 9. CHARTS DATA POINT REINFORCEMENT */
+.recharts-tooltip-wrapper {
+  transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.recharts-default-tooltip {
+  border-radius: 12px !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06) !important;
+  backdrop-filter: blur(6px) !important;
+}
+
+/* 10. ACTION ICONS SOFT GLOW */
+.action-icon,
+.hover-action-icon svg {
+  transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1), color 200ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+@media (hover: hover) and (pointer: fine) {
+  .action-icon:hover,
+  .hover-action-icon:hover svg {
+    transform: scale(1.1) !important;
+    filter: drop-shadow(0 2px 4px rgba(204, 26, 47, 0.15)) !important;
+  }
+}
+
+/* 11. DROPDOWNS & MODALS ENTER ENTRANCE */
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes modalZoomFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+nav .absolute {
+  animation: dropdownFadeIn 220ms cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
+}
+
+/* Premium modal entrance */
+.modal-transition-enter {
+  animation: modalZoomFadeIn 250ms cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
+}
+
+/* Dynamic Interactive Hover System */
+.interactive-hover {
+  transition: transform .45s cubic-bezier(.22, 1, .36, 1),
+              box-shadow .45s cubic-bezier(.22, 1, .36, 1),
+              border-color .3s ease,
+              background-color .3s ease !important;
+  transform: translateY(0) scale(1) !important;
+  position: relative;
+}
+.interactive-hover:hover {
+  transform: translateY(-8px) scale(1.025) !important;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12) !important;
+}
+.interactive-hover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(204, 26, 47, 0.06), transparent 60%);
+  opacity: 0;
+  transition: opacity .4s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+.interactive-hover:hover::before {
+  opacity: 1;
+}
+
+.icon-float {
+  transition: transform .4s ease !important;
+}
+.group:hover .icon-float {
+  transform: translateY(-3px) scale(1.08) rotate(3deg) !important;
+}
+
+/* WhatsApp Custom Keyframe Animations */
+@keyframes whatsappBounce {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  30% {
+    transform: translateY(-16px) scale(1.05);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+  50% {
+    transform: translateY(0) scale(0.95);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  70% {
+    transform: translateY(-8px) scale(1.02);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+  85% {
+    transform: translateY(0) scale(0.98);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+}
+
+@keyframes whatsappPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 10px 25px -5px rgba(37, 211, 102, 0.4), 0 8px 16px -6px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    transform: scale(1.04);
+    box-shadow: 0 15px 30px -3px rgba(37, 211, 102, 0.55), 0 10px 20px -5px rgba(0, 0, 0, 0.12);
+  }
+}
+
+@keyframes whatsappPing {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  70% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+.animate-whatsapp-bounce {
+  animation: whatsappBounce 2s cubic-bezier(0.22, 1, 0.36, 1) 1 !important;
+}
+
+.animate-whatsapp-pulse {
+  animation: whatsappPulse 3.5s infinite ease-in-out !important;
+}
+
+.animate-whatsapp-ping {
+  animation: whatsappPing 2.5s infinite ease-out !important;
+}
+
+.animate-whatsapp-ping-delayed {
+  animation: whatsappPing 2.5s infinite ease-out 1.25s !important;
+}
+
+.widget-glow-whatsapp {
+  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
+              background-color 300ms cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 300ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.widget-glow-whatsapp:hover {
+  background-color: #1ebe57 !important;
+  box-shadow: 0 20px 35px -5px rgba(37, 211, 102, 0.6), 0 10px 20px -8px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* 12. ACCESSIBILITY OVERRIDES */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-delay: 0s !important;
+    animation-duration: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0s !important;
+    scroll-behavior: auto !important;
+    transform: none !important;
+  }
+}

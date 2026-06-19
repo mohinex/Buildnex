@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>You are Offline | Eurosia Buildnex</title>
+  <style>
+    :root {
+      --brand-red: #cc1a2f;
+      --bg-dark: #050505;
+      --zinc-800: #27272a;
+      --zinc-400: #a1a1aa;
+      --zinc-100: #f4f4f5;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--zinc-100);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* Decorative background pattern */
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(var(--brand-red) 0.5px, transparent 0.5px);
+      background-size: 16px 16px;
+      opacity: 0.08;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      max-width: 440px;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      border: 1px solid var(--zinc-800);
+      border-radius: 24px;
+      padding: 40px 32px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .logo-container {
+      position: relative;
+      margin-bottom: 24px;
+      display: inline-block;
+    }
+
+    .logo {
+      width: 80px;
+      height: 80px;
+      object-contain: contain;
+      border-radius: 16px;
+      box-shadow: 0 8px 16px rgba(204, 26, 47, 0.2);
+    }
+
+    h1 {
+      font-size: 20px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .brand-accent {
+      color: var(--brand-red);
+    }
+
+    p {
+      color: var(--zinc-400);
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    button {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 14px 20px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      width: 100%;
+    }
+
+    .btn-primary {
+      background-color: var(--brand-red);
+      color: white;
+      box-shadow: 0 4px 12px rgba(204, 26, 47, 0.3);
+    }
+
+    .btn-primary:hover {
+      background-color: white;
+      color: black;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background-color: var(--zinc-800);
+      color: var(--zinc-100);
+      border: 1px solid var(--zinc-800);
+    }
+
+    .btn-secondary:hover {
+      background-color: #3f3f46;
+      transform: translateY(-1px);
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      font-weight: 900;
+      font-family: monospace;
+      background: rgba(204, 26, 47, 0.12);
+      border: 1px solid rgba(204, 26, 47, 0.3);
+      color: var(--brand-red);
+      padding: 4px 10px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+
+    .pulse {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--brand-red);
+      animation: blink 1.5s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="logo-container">
+      <img src="/logo.svg" alt="Eurosia Buildnex Logo" class="logo" />
+    </div>
+
+    <div class="status-pill">
+      <div class="pulse"></div>
+      <span>Offline Mode Activated</span>
+    </div>
+
+    <h1>you are currently offline</h1>
+    <p>Eurosia Buildnex failed to establish contact with the cloud server. Active material logs and local ledger event pipelines continue to cache locally safely.</p>
+
+    <div class="btn-group">
+      <button class="btn-primary" id="retry-btn">Retry Connection</button>
+      <button class="btn-secondary" id="reload-btn">Reload Board</button>
+    </div>
+  </div>
+
+  <script>
+    const retryBtn = document.getElementById('retry-btn');
+    const reloadBtn = document.getElementById('reload-btn');
+
+    const attemptRecovery = () => {
+      if (navigator.onLine) {
+        window.location.href = '/';
+      } else {
+        // Simple shake animation on button
+        retryBtn.style.transform = 'translateX(-4px)';
+        setTimeout(() => retryBtn.style.transform = 'translateX(4px)', 80);
+        setTimeout(() => retryBtn.style.transform = 'translateX(-2px)', 160);
+        setTimeout(() => retryBtn.style.transform = 'translateX(0)', 240);
+      }
+    };
+
+    retryBtn.addEventListener('click', attemptRecovery);
+    reloadBtn.addEventListener('click', () => {
+      window.location.reload();
+    });
+
+    // Automatically redirect when connection is restored
+    window.addEventListener('online', () => {
+      window.location.href = '/';
+    });
+  </script>
+</body>
+</html>

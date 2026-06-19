@@ -1,0 +1,8 @@
+{
+  "name": "Eurosia Buildnex website",
+  "description": "The complete offline-first smart construction ERP platform for modern builders.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

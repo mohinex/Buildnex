@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <!-- Background -->
+  <rect width="500" height="500" fill="#000000" />
+  
+  <!-- Red Top Block of the 'E' -->
+  <rect x="200" y="170" width="105" height="35" fill="#cc1a2f" />
+  
+  <!-- White Path of the 'E' with smooth top-left curve and arms -->
+  <path d="M 200,360 H 305 V 325 H 245 V 295 H 290 V 260 H 245 V 205 A 45 45 0 0 0 200 250 V 360 Z" fill="#ffffff" />
+</svg>
